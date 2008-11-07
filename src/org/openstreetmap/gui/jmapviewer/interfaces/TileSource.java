@@ -46,6 +46,15 @@ public interface TileSource {
     public int getMaxZoom();
 
     /**
+     * Specifies the minimum zoom value. This value is usually 0. 
+     * Only for maps that cover a certain region up to a limited zoom level 
+     * this method should return a value different than 0.  
+     * 
+     * @return minimum zoom value - usually 0
+     */
+    public int getMinZoom();
+
+    /**
      * @return The supported tile update mechanism
      * @see TileUpdate
      */

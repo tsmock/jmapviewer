@@ -22,6 +22,22 @@ import org.openstreetmap.gui.jmapviewer.interfaces.TileSource;
  */
 public class Tile {
 
+    /**
+     * Hourglass image that is displayed until a map tile has been loaded
+     */
+    public static BufferedImage LOADING_IMAGE;
+    public static BufferedImage ERROR_IMAGE;
+
+    static {
+        try {
+            LOADING_IMAGE = ImageIO.read(JMapViewer.class.getResourceAsStream("images/hourglass.png"));
+            ERROR_IMAGE = ImageIO.read(JMapViewer.class.getResourceAsStream("images/error.png"));
+        } catch (Exception e1) {
+            LOADING_IMAGE = null;
+            ERROR_IMAGE = null;
+        }
+    }
+
     protected TileSource source;
     protected int xtile;
     protected int ytile;
@@ -46,7 +62,7 @@ public class Tile {
         this.xtile = xtile;
         this.ytile = ytile;
         this.zoom = zoom;
-        this.image = null;
+        this.image = LOADING_IMAGE;
         this.key = getTileKey(source, xtile, ytile, zoom);
     }
 
@@ -77,8 +93,7 @@ public class Tile {
                 int paintedTileCount = 0;
                 for (int x = 0; x < factor; x++) {
                     for (int y = 0; y < factor; y++) {
-                        Tile tile =
-                                cache.getTile(source, xtile_high + x, ytile_high + y, zoom_high);
+                        Tile tile = cache.getTile(source, xtile_high + x, ytile_high + y, zoom_high);
                         if (tile != null && tile.isLoaded()) {
                             paintedTileCount++;
                             tile.paint(g, x * SIZE, y * SIZE);

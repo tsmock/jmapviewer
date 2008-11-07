@@ -25,8 +25,7 @@ public class OsmTileLoader implements TileLoader {
         this.listener = listener;
     }
 
-    public Runnable createTileLoaderJob(final TileSource source, final int tilex, final int tiley,
-            final int zoom) {
+    public Runnable createTileLoaderJob(final TileSource source, final int tilex, final int tiley, final int zoom) {
         return new Runnable() {
 
             InputStream input = null;
@@ -45,15 +44,17 @@ public class OsmTileLoader implements TileLoader {
                     input = loadTileFromOsm(tile).getInputStream();
                     tile.loadImage(input);
                     tile.setLoaded(true);
-                    listener.tileLoadingFinished(tile);
+                    listener.tileLoadingFinished(tile, true);
                     input.close();
                     input = null;
                 } catch (Exception e) {
-                    if (input == null /* || !input.isStopped() */)
-                        System.err.println("failed loading " + zoom + "/" + tilex + "/" + tiley
-                                + " " + e.getMessage());
+                    tile.setImage(Tile.ERROR_IMAGE);
+                    listener.tileLoadingFinished(tile, false);
+                    if (input == null)
+                        System.err.println("failed loading " + zoom + "/" + tilex + "/" + tiley + " " + e.getMessage());
                 } finally {
                     tile.loading = false;
+                    tile.setLoaded(true);
                 }
             }
 
@@ -73,5 +74,5 @@ public class OsmTileLoader implements TileLoader {
     public String toString() {
         return getClass().getSimpleName();
     }
-    
+
 }
