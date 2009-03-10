@@ -69,10 +69,8 @@ public class OsmMercator {
         else if (aLat > MAX_LAT)
             aLat = MAX_LAT;
         double latitude = Math.toRadians(aLat);
-        int y =
-                (int) (-1
-                        * (radius(aZoomlevel) / 2.0 * Math.log((1.0 + Math.sin(latitude))
-                                / (1.0 - Math.sin(latitude)))) - falseNorthing(aZoomlevel));
+        int y = (int) (-1
+                * (radius(aZoomlevel) / 2.0 * Math.log((1.0 + Math.sin(latitude)) / (1.0 - Math.sin(latitude)))) - falseNorthing(aZoomlevel));
         y = Math.min(y, getMaxPixels(aZoomlevel) - 1);
         return y;
     }

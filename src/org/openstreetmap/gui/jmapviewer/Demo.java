@@ -43,9 +43,8 @@ public class Demo extends JFrame {
         JPanel helpPanel = new JPanel();
         add(panel, BorderLayout.NORTH);
         add(helpPanel, BorderLayout.SOUTH);
-        JLabel helpLabel =
-                new JLabel("Use right mouse button to move,\n "
-                        + "left double click or mouse wheel to zoom.");
+        JLabel helpLabel = new JLabel("Use right mouse button to move,\n "
+                + "left double click or mouse wheel to zoom.");
         helpPanel.add(helpLabel);
         JButton button = new JButton("setDisplayToFitMapMarkers");
         button.addActionListener(new ActionListener() {
@@ -54,17 +53,15 @@ public class Demo extends JFrame {
                 map.setDisplayToFitMapMarkers();
             }
         });
-        JComboBox tileSourceSelector =
-                new JComboBox(new TileSource[] { new OsmTileSource.Mapnik(),
-                        new OsmTileSource.TilesAtHome(), new OsmTileSource.CycleMap() });
+        JComboBox tileSourceSelector = new JComboBox(new TileSource[] { new OsmTileSource.Mapnik(),
+                new OsmTileSource.TilesAtHome(), new OsmTileSource.CycleMap() });
         tileSourceSelector.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 map.setTileSource((TileSource) e.getItem());
             }
         });
-        JComboBox tileLoaderSelector =
-                new JComboBox(new TileLoader[] { new OsmFileCacheTileLoader(map),
-                        new OsmTileLoader(map) });
+        JComboBox tileLoaderSelector = new JComboBox(new TileLoader[] { new OsmFileCacheTileLoader(map),
+                new OsmTileLoader(map) });
         tileLoaderSelector.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 map.setTileLoader((TileLoader) e.getItem());

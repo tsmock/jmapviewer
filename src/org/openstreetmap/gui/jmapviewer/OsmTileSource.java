@@ -29,13 +29,13 @@ public class OsmTileSource {
         public String getTileType() {
             return "png";
         }
-        
+
     }
 
     public static class Mapnik extends AbstractOsmTileSource {
 
         public static String NAME = "Mapnik";
-        
+
         public String getName() {
             return NAME;
         }
@@ -52,7 +52,7 @@ public class OsmTileSource {
     }
 
     public static class CycleMap extends AbstractOsmTileSource {
-        
+
         private static final String PATTERN = "http://%s.andy.sandbox.cloudmade.com/tiles/cycle/%d/%d/%d.png";
         public static String NAME = "OSM Cycle Map";
 

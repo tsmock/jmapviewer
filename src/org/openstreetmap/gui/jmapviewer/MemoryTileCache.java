@@ -79,6 +79,16 @@ public class MemoryTileCache implements TileCache {
         return new CacheEntry(tile);
     }
 
+    /**
+     * Clears the cache deleting all tiles from memory 
+     */
+    public void clear() {
+        synchronized (lruTiles) {
+            hashtable.clear();
+            lruTiles.clear();
+        }
+    }
+
     public int getTileCount() {
         return hashtable.size();
     }
@@ -113,6 +123,18 @@ public class MemoryTileCache implements TileCache {
             this.tile = tile;
         }
 
+        public Tile getTile() {
+            return tile;
+        }
+
+        public CacheEntry getNext() {
+            return next;
+        }
+
+        public CacheEntry getPrev() {
+            return prev;
+        }
+
     }
 
     /**
@@ -128,6 +150,10 @@ public class MemoryTileCache implements TileCache {
         protected int elementCount;
 
         public CacheLinkedListElement() {
+            clear();
+        }
+
+        public synchronized void clear() {
             elementCount = 0;
             firstElement = null;
             lastElement = null;
@@ -189,5 +215,10 @@ public class MemoryTileCache implements TileCache {
         public CacheEntry getLastElement() {
             return lastElement;
         }
+
+        public CacheEntry getFirstElement() {
+            return firstElement;
+        }
+
     }
 }
