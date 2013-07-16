@@ -64,9 +64,9 @@ public class ScanexTileSource extends AbstractTMSTileSource {
         return TileUpdate.IfNoneMatch;
     }
 
-    private static double RADIUS_E = 6378137;	/* radius of Earth at equator, m */
+    private static double RADIUS_E = 6378137;   /* radius of Earth at equator, m */
     private static double EQUATOR = 40075016.68557849; /* equator length, m */
-    private static double E = 0.0818191908426;	/* eccentricity of Earth's ellipsoid */
+    private static double E = 0.0818191908426;  /* eccentricity of Earth's ellipsoid */
 
     @Override
     public double latToTileY(double lat, int zoom) {

@@ -9,7 +9,7 @@ import org.openstreetmap.gui.jmapviewer.events.JMVCommandEvent;
 /**
  * Must be implemented for processing commands while user
  * interacts with map viewer.
- * 
+ *
  * @author Jason Huntley
  *
  */
